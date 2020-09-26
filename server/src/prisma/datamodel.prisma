@@ -1,0 +1,23 @@
+type Book {
+  id: ID! @id 
+  title: String
+  pages: Int
+  chapters: Int
+  price: Float
+  available: Boolean
+  authors: [BooksOnAuthors]
+}
+
+type Author {
+  id: ID! @id 
+  name: String 
+  email: String!  @unique
+  books: [BooksOnAuthors]
+}
+
+
+type BooksOnAuthors {
+  id: ID! @id
+  book: Book @relation( references: [id])
+  author: Author @relation( references: [id])
+}
